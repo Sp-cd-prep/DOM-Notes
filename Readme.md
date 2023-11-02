@@ -530,8 +530,36 @@ In the `nextSibling` example, we get the next sibling node, which is a text node
   const lastElement = element.lastElementChild;
   ```
 
+Certainly! Here's a simple example of how to use the `firstChild` and `lastChild` properties to access the first and last child nodes of an element in the DOM:
 
-Certainly! Here are detailed notes on DOM modifications, including creating, removing, and appending elements, as well as changing, updating text, styles, and properties of elements, along with examples.
+Suppose you have the following HTML:
+
+```html
+<div id="myDiv">
+    <p>First paragraph</p>
+    <p>Second paragraph</p>
+    <p>Third paragraph</p>
+</div>
+```
+
+You can use `firstChild` and `lastChild` to access the first and last child nodes of the `myDiv` element as follows:
+
+```javascript
+// Access the first child node of the element
+const firstChild = document.getElementById("myDiv").firstChild;
+
+// Access the last child node of the element
+const lastChild = document.getElementById("myDiv").lastChild;
+
+// Output the text content of the first and last child nodes
+console.log("First Child: " + firstChild.textContent);
+console.log("Last Child: " + lastChild.textContent);
+```
+
+In this example, `firstChild` and `lastChild` are used to access the first and last child nodes of the `myDiv` element. The text content of these child nodes is then retrieved and logged to the console.
+
+The output will show the text content of the first and last child nodes within the `myDiv` element, demonstrating how to use `firstChild` and `lastChild` to access these nodes.
+
 
 ## DOM Modifications
 
@@ -681,158 +709,8 @@ paragraph.style.backgroundColor = "lightgray";
 const image = document.getElementById("myImage");
 image.src = "new-image.jpg";
 ```
-Certainly! Here are detailed notes on DOM modifications, including creating, removing, and appending elements, as well as changing, updating text, styles, and properties of elements, along with examples.
 
-## DOM Modifications
 
-### a. Create / Remove / Append Elements
-
-#### Definition
-
-- **Create Elements**: Involves creating new HTML elements in the DOM using JavaScript. These elements can be any valid HTML element, and they can be added to the document.
-
-- **Remove Elements**: Involves removing existing elements from the DOM. This is useful for cleaning up or dynamically updating the page.
-
-- **Append Elements**: Involves adding elements as children to other elements in the DOM, allowing you to build and modify the document structure dynamically.
-
-#### Syntax
-
-1. **Create Element**:
-   ```javascript
-   const newElement = document.createElement("tagName");
-   ```
-
-2. **Remove Element**:
-   ```javascript
-   const elementToRemove = document.getElementById("elementId");
-   elementToRemove.remove();
-   ```
-
-3. **Append Element**:
-   ```javascript
-   const parentElement = document.getElementById("parentElementId");
-   parentElement.appendChild(newElement);
-   ```
-
-#### Example
-
-**Create Element**:
-
-```html
-<div id="container">
-    <p>This is a container.</p>
-</div>
-```
-
-```javascript
-// Create a new element and set its content
-const newParagraph = document.createElement("p");
-newParagraph.textContent = "This is a dynamically created paragraph.";
-
-// Append the new element to the container
-const container = document.getElementById("container");
-container.appendChild(newParagraph);
-```
-
-**Remove Element**:
-
-```html
-<div id="container">
-    <p>This is a container.</p>
-</div>
-```
-
-```javascript
-// Remove the <p> element from the container
-const elementToRemove = document.querySelector("p");
-elementToRemove.remove();
-```
-
-**Append Element**:
-
-```html
-<div id="container">
-    <p>This is a container.</p>
-</div>
-```
-
-```javascript
-// Create a new element and set its content
-const newParagraph = document.createElement("p");
-newParagraph.textContent = "This is a dynamically created paragraph.";
-
-// Append the new element to the container
-const container = document.getElementById("container");
-container.appendChild(newParagraph);
-```
-
-### b. Change / Update Text / Styles / Properties of an Element
-
-#### Definition
-
-- **Change Text**: Involves modifying the text content within an element. You can set, update, or replace the text content of an element.
-
-- **Change Styles**: Allows you to modify the visual presentation of an element by adjusting its CSS styles.
-
-- **Change Properties**: Refers to modifying attributes and properties of HTML elements, such as changing the `src` attribute of an image.
-
-#### Syntax
-
-1. **Change Text**:
-   ```javascript
-   element.textContent = "newText";
-   ```
-
-2. **Change Styles**:
-   ```javascript
-   element.style.property = "value";
-   ```
-
-3. **Change Properties**:
-   ```javascript
-   element.propertyName = "newValue";
-   ```
-
-#### Example
-
-**Change Text**:
-
-```html
-<p id="myParagraph">This is some text.</p>
-```
-
-```javascript
-// Update the text content of the paragraph
-const paragraph = document.getElementById("myParagraph");
-paragraph.textContent = "This is the updated text content.";
-```
-
-**Change Styles**:
-
-```html
-<p id="myParagraph">This is some text.</p>
-```
-
-```javascript
-// Change the font color and background color of the paragraph
-const paragraph = document.getElementById("myParagraph");
-paragraph.style.color = "blue";
-paragraph.style.backgroundColor = "lightgray";
-```
-
-**Change Properties**:
-
-```html
-<img id="myImage" src="image.jpg" alt="An image">
-```
-
-```javascript
-// Change the source (src) attribute of the image
-const image = document.getElementById("myImage");
-image.src = "new-image.jpg";
-```
-
-These examples demonstrate how to change and update text, styles, and properties of elements within the DOM using JavaScript. You can dynamically modify the content and appearance of web pages, making them more interactive and responsive.
 
 
 

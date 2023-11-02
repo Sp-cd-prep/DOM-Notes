@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+    <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+<script>
+// Select the first <li> element
+    const listItem = document.querySelector("li");
+
+// Access the next sibling node
+const nextSibling = listItem.nextSibling;
+
+// Check if it's a text node and output its text content
+if (nextSibling.nodeType === 3) {
+    console.log("Next sibling (text node): " + nextSibling.textContent);
+}
+
+</script>
+
+</body>
+</html>

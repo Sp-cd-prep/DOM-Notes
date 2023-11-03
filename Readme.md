@@ -989,3 +989,299 @@ In JavaScript, the `Date` object provides various methods to set different compo
    ```
 
 These `set` methods allow you to change specific date and time components within a `Date` object, making it easy to update and manipulate individual parts of a date without affecting other components.
+
+
+**Event Handlers and Event Bubbling/Capturing**
+
+**Event Handlers:**
+Event handlers in JavaScript are functions that can be attached to HTML elements to specify what should happen when an event occurs. Events can be triggered by various interactions, such as clicking a button, moving the mouse, submitting a form, and more.
+
+**Common Event Handlers:**
+1. **`onclick`**: Fires when an element is clicked.
+2. **`onmouseover`**: Fires when the mouse pointer is moved over an element.
+3. **`onmouseout`**: Fires when the mouse pointer is moved out of an element.
+4. **`onsubmit`**: Fires when a form is submitted.
+
+**Syntax to Attach an Event Handler:**
+```javascript
+element.onclick = function() {
+    // Event handling code
+};
+```
+
+**Example of Event Handling:**
+
+**1. `onchange` Event:**
+   - The `onchange` event is triggered when the value of an input element changes. It is commonly used with form elements like text inputs and select boxes.
+   
+   ```html
+   <input type="text" id="myInput" onchange="handleChange()">
+   <p id="output">Change detected!</p>
+
+   <script>
+       function handleChange() {
+           document.getElementById("output").textContent = "Change detected!";
+       }
+   </script>
+   ```
+
+**2. `onclick` Event:**
+   - The `onclick` event is triggered when an element is clicked.
+
+   ```html
+   <button id="myButton" onclick="handleClick()">Click Me</button>
+   <p id="output">Button not clicked yet.</p>
+
+   <script>
+       function handleClick() {
+           document.getElementById("output").textContent = "Button clicked!";
+       }
+   </script>
+   ```
+
+**3. `onmouseover` Event:**
+   - The `onmouseover` event is triggered when the mouse pointer is moved over an element.
+
+   ```html
+   <div id="myDiv" onmouseover="handleMouseOver()">Hover over me</div>
+   <p id="output">Mouse not over the div.</p>
+
+   <script>
+       function handleMouseOver() {
+           document.getElementById("output").textContent = "Mouse over the div!";
+       }
+   </script>
+   ```
+
+**4. `onmouseout` Event:**
+   - The `onmouseout` event is triggered when the mouse pointer is moved out of an element.
+
+   ```html
+   <div id="myDiv" onmouseout="handleMouseOut()">Move the mouse away</div>
+   <p id="output">Mouse not out of the div yet.</p>
+
+   <script>
+       function handleMouseOut() {
+           document.getElementById("output").textContent = "Mouse out of the div!";
+       }
+   </script>
+   ```
+
+**5. `onkeydown` Event:**
+   - The `onkeydown` event is triggered when a keyboard key is pressed down.
+
+   ```html
+   <input type="text" id="myInput" onkeydown="handleKeyDown()">
+   <p id="output">Key not pressed yet.</p>
+
+   <script>
+       function handleKeyDown() {
+           document.getElementById("output").textContent = "Key pressed!";
+       }
+   </script>
+   ```
+
+**6. `onload` Event:**
+   - The `onload` event is triggered when a page or an image has finished loading.
+
+   ```html
+   <img src="example.jpg" id="myImage" onload="handleLoad()">
+   <p id="output">Image not loaded yet.</p>
+
+   <script>
+       function handleLoad() {
+           document.getElementById("output").textContent = "Image loaded!";
+       }
+   </script>
+   ```
+
+In each example, the event handler function is invoked when the specified event occurs, and it updates the content on the page accordingly.
+
+In this example, when the button is clicked, an alert with the message "Button Clicked!" is displayed.
+
+
+Certainly! Here are examples of using the `addEventListener` method to attach event handlers for each of the mentioned events:
+
+**1. `onchange` Event with `addEventListener`:
+   - The `change` event is triggered when the value of an input element changes.
+
+   ```html
+   <input type="text" id="myInput">
+   <p id="output">Change detected!</p>
+
+   <script>
+       const inputElement = document.getElementById("myInput");
+       inputElement.addEventListener("change", function() {
+           document.getElementById("output").textContent = "Change detected!";
+       });
+   </script>
+   ```
+
+**2. `onclick` Event with `addEventListener`:
+   - The `click` event is triggered when an element is clicked.
+
+   ```html
+   <button id="myButton">Click Me</button>
+   <p id="output">Button not clicked yet.</p>
+
+   <script>
+       const buttonElement = document.getElementById("myButton");
+       buttonElement.addEventListener("click", function() {
+           document.getElementById("output").textContent = "Button clicked!";
+       });
+   </script>
+   ```
+
+**3. `onmouseover` Event with `addEventListener`:
+   - The `mouseover` event is triggered when the mouse pointer is moved over an element.
+
+   ```html
+   <div id="myDiv">Hover over me</div>
+   <p id="output">Mouse not over the div.</p>
+
+   <script>
+       const divElement = document.getElementById("myDiv");
+       divElement.addEventListener("mouseover", function() {
+           document.getElementById("output").textContent = "Mouse over the div!";
+       });
+   </script>
+   ```
+
+**4. `onmouseout` Event with `addEventListener`:
+   - The `mouseout` event is triggered when the mouse pointer is moved out of an element.
+
+   ```html
+   <div id="myDiv">Move the mouse away</div>
+   <p id "output">Mouse not out of the div yet.</p>
+
+   <script>
+       const divElement = document.getElementById("myDiv");
+       divElement.addEventListener("mouseout", function() {
+           document.getElementById("output").textContent = "Mouse out of the div!";
+       });
+   </script>
+   ```
+
+**5. `onkeydown` Event with `addEventListener`:
+   - The `keydown` event is triggered when a keyboard key is pressed down.
+
+   ```html
+   <input type="text" id="myInput">
+   <p id="output">Key not pressed yet.</p>
+
+   <script>
+       const inputElement = document.getElementById("myInput");
+       inputElement.addEventListener("keydown", function() {
+           document.getElementById("output").textContent = "Key pressed!";
+       });
+   </script>
+   ```
+
+**6. `onload` Event with `addEventListener`:
+   - The `load` event is triggered when a page or an image has finished loading.
+
+   ```html
+   <img src="example.jpg" id="myImage">
+   <p id="output">Image not loaded yet.</p>
+
+   <script>
+       const imageElement = document.getElementById("myImage");
+       imageElement.addEventListener("load", function() {
+           document.getElementById("output").textContent = "Image loaded!";
+       });
+   </script>
+   ```
+
+In each example, the `addEventListener` method is used to attach event handlers to the specified events, and these event handlers update the content on the page when the events occur.
+
+
+**`setTimeout` and `setInterval`** are both JavaScript functions that allow you to execute a piece of code or a function after a certain amount of time. However, they are used in slightly different ways:
+
+1. **`setTimeout`**:
+
+   - **Definition**: `setTimeout` is used to execute a function or code block once, with a specified delay (in milliseconds), after which the function is called.
+
+   - **Syntax**: `setTimeout(function, delay)`
+
+   - **Example**:
+
+     ```javascript
+     function greet() {
+         console.log("Hello, world!");
+     }
+
+     // Execute the greet function after 2000 milliseconds (2 seconds)
+     setTimeout(greet, 2000);
+     ```
+
+   In this example, the `greet` function is executed once, with a delay of 2 seconds.
+
+2. **`setInterval`**:
+
+   - **Definition**: `setInterval` is used to repeatedly execute a function or code block at specified intervals (in milliseconds) until it is cleared.
+
+   - **Syntax**: `setInterval(function, interval)`
+
+   - **Example**:
+
+     ```javascript
+     let count = 0;
+
+     function incrementAndLog() {
+         count++;
+         console.log(`Count: ${count}`);
+     }
+
+     // Execute the incrementAndLog function every 1000 milliseconds (1 second)
+     const intervalID = setInterval(incrementAndLog, 1000);
+
+     // Clear the interval after 5 seconds
+     setTimeout(() => {
+         clearInterval(intervalID);
+         console.log("Interval cleared.");
+     }, 5000);
+     ```
+
+   In this example, the `incrementAndLog` function is executed every 1 second. After 5 seconds, the `clearInterval` function is called to stop the interval.
+
+**Key Differences**:
+
+- `setTimeout` is used for executing a function once after a specified delay, while `setInterval` is used for repeatedly executing a function at specified intervals until cleared.
+
+- You need to manually call `clearInterval` to stop the execution of a function set by `setInterval`, whereas `setTimeout` executes the function only once.
+
+- `setTimeout` can be used for delayed execution of a function or action, such as showing a message after a certain time, while `setInterval` is useful for creating continuous processes, like updating a timer or polling a server at regular intervals.
+
+In summary, `setTimeout` is for executing a function once after a delay, while `setInterval` is for executing a function repeatedly at specified intervals.
+
+
+
+
+**Event Bubbling and Capturing:**
+Event propagation in the DOM tree happens in two phases: capturing and bubbling. These phases are essential when dealing with nested elements and event delegation.
+
+- **Capturing Phase**: The event starts from the root element and goes down the tree to the target element. It's less commonly used.
+
+- **Bubbling Phase**: The event starts from the target element and bubbles up the tree to the root element.
+
+**Example of Event Bubbling:**
+```html
+<div id="outer">
+    <p id="inner">Click me!</p>
+</div>
+<script>
+    document.getElementById("outer").onclick = function() {
+        alert("Outer div clicked!");
+    };
+    document.getElementById("inner").onclick = function(event) {
+        alert("Inner paragraph clicked!");
+        event.stopPropagation(); // Stop event propagation
+    };
+</script>
+```
+
+In this example, clicking the inner paragraph triggers both the inner and outer event handlers because of event bubbling. However, the `event.stopPropagation()` method is used to stop the event from further propagating, preventing the outer event handler from firing.
+
+Understanding event handling and event propagation is crucial for creating interactive web applications and handling user interactions effectively.
+
+

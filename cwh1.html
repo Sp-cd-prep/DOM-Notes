@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <title>nextSibling Example</title>
+</head>
 <body>
-
-
     <ul>
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
+        <li>Item 1</li><li>Item 2</li><li>Item 3</li><li>Item 4</li><li>Item 5</li>
     </ul>
-<script>
-// Select the first <li> element
-    const listItem = document.querySelector("li");
+    <button id="nextSiblingBtn">Get Next Sibling</button>
 
-// Access the next sibling node
-const nextSibling = listItem.nextSibling;
+    <script>
+        const nextSiblingButton = document.getElementById("nextSiblingBtn");
 
-// Check if it's a text node and output its text content
-if (nextSibling.nodeType === 3) {
-    console.log("Next sibling (text node): " + nextSibling.textContent);
-}
+        nextSiblingButton.addEventListener("click", function () {
+            const listItem = document.querySelector("li"); // Get the first list item
+            const nextSibling = listItem.nextSibling;
 
-</script>
-
+            if (nextSibling) {
+                alert("Next Sibling: " + nextSibling.textContent);
+            } else {
+                alert("No valid next sibling found.");
+            }
+        });
+    </script>
 </body>
 </html>

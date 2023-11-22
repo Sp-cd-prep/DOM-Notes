@@ -1790,3 +1790,187 @@ Scope chaining and closures are related concepts in JavaScript, but they are not
 - **Closure is a concept that involves scope chaining but is not limited to it.** A closure is formed when a function retains access to variables from its outer scope, creating a closure even if it doesn't explicitly reference variables from the outer scope in its code.
 
 In summary, scope chaining is a mechanism, while closure is a result of that mechanism, indicating that a function maintains access to its outer scope's variables. Closures often involve scope chaining, but they are not synonymous.
+
+
+**1. Class and Inheritance in JavaScript:**
+
+**Class in JavaScript:**
+
+- **Definition:** A class is a blueprint for creating objects with a predefined structure and behavior. It encapsulates data (properties) and functions (methods) that operate on that data.
+
+- **Syntax:**
+  ```javascript
+  class ClassName {
+      constructor(parameters) {
+          // constructor code
+      }
+
+      method1() {
+          // method1 code
+      }
+
+      method2() {
+          // method2 code
+      }
+  }
+  ```
+
+- **Example:**
+  ```javascript
+  class Animal {
+      constructor(name) {
+          this.name = name;
+      }
+
+      speak() {
+          console.log(`${this.name} makes a sound.`);
+      }
+  }
+
+  const dog = new Animal('Dog');
+  dog.speak(); // Output: Dog makes a sound.
+  ```
+
+**Inheritance in JavaScript:**
+
+- **Definition:** Inheritance is a mechanism that allows a class (subclass/derived class) to inherit properties and methods from another class (superclass/base class).
+
+- **Syntax:**
+  ```javascript
+  class Subclass extends Superclass {
+      constructor(parameters) {
+          super(parameters); // Call the superclass constructor
+          // subclass constructor code
+      }
+
+      // additional methods specific to the subclass
+  }
+  ```
+
+- **Example:**
+  ```javascript
+  class Bird extends Animal {
+      constructor(name, wingspan) {
+          super(name); // Call the superclass constructor
+          this.wingspan = wingspan;
+      }
+
+      fly() {
+          console.log(`${this.name} is flying with a wingspan of ${this.wingspan} cm.`);
+      }
+  }
+
+  const eagle = new Bird('Eagle', 200);
+  eagle.speak(); // Output: Eagle makes a sound.
+  eagle.fly();   // Output: Eagle is flying with a wingspan of 200 cm.
+  ```
+
+**First-Class Functions:**
+
+In programming languages, a language is said to have first-class functions if functions are treated as first-class citizens. This means functions can be:
+
+1. Assigned to variables.
+2. Passed as arguments to other functions.
+3. Returned from other functions.
+
+**Example of First-Class Functions:**
+
+```javascript
+// Function assigned to a variable
+const greet = function(name) {
+    return `Hello, ${name}!`;
+};
+
+// Function passed as an argument to another function
+function processGreeting(greeterFunction, name) {
+    return greeterFunction(name);
+}
+
+// Function returned from another function
+function createGreeter(greeting) {
+    return function(name) {
+        return `${greeting}, ${name}!`;
+    };
+}
+
+// Using first-class functions
+const result1 = processGreeting(greet, "John");
+console.log(result1); // Output: Hello, John!
+
+const customGreeter = createGreeter("Hi");
+const result2 = customGreeter("Alice");
+console.log(result2); // Output: Hi, Alice!
+```
+
+**High-Order Functions:**
+
+A higher-order function is a function that takes one or more functions as arguments or returns a function as its result.
+
+**Example of High-Order Functions:**
+
+```javascript
+// Higher-order function taking a function as an argument
+function multiplier(factor) {
+    return function(number) {
+        return number * factor;
+    };
+}
+
+const double = multiplier(2);
+const triple = multiplier(3);
+
+console.log(double(5)); // Output: 10
+console.log(triple(5)); // Output: 15
+
+// Higher-order function returning a function
+function greeterFactory(greeting) {
+    return function(name) {
+        return `${greeting}, ${name}!`;
+    };
+}
+
+const sayHello = greeterFactory("Hello");
+const sayHi = greeterFactory("Hi");
+
+console.log(sayHello("Tom")); // Output: Hello, Tom!
+console.log(sayHi("Jerry"));  // Output: Hi, Jerry!
+```
+
+**Key Differences:**
+
+1. **First-Class Functions:**
+   - Refers to the treatment of functions as first-class citizens.
+   - Allows functions to be assigned to variables, passed as arguments, and returned from other functions.
+   - It's more about the characteristics of functions in a language.
+
+2. **High-Order Functions:**
+   - Refers to functions that operate on other functions by taking them as arguments or returning them.
+   - It's more about the behavior or capability of functions to operate on functions.
+
+```javascript
+function marker(func) {
+    return function(a, b) {
+        console.log("======");
+        func(a, b);
+        console.log("======");
+    };
+}
+function sum(a, b) {
+    console.log(a + b);
+}
+const wrap = marker(sum);
+wrap(2, 3); // Now you can call wrap, which in turn calls sum with the wrapping behavior
+```
+
+```javascript
+function product(a,b){
+    console.log("======")
+    console.log(a*b);
+    console.log("======")
+}
+function diff(a,b){
+    console.log("======")
+    console.log(a-b);
+    console.log("======")
+}
+```

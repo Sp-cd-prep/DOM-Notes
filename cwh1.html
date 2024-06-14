@@ -1,27 +1,199 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>nextSibling Example</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EMI Calculator</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+
+h1{
+  display: flex;
+  justify-content: center;
+  color: brown;
+}
+form{
+  display: flex;
+  justify-content: center;
+}
+input{
+  background-color: bisque;
+}
+#submit{
+    min-width: 130px;
+    height: 40px;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    /* display: inline-block; */
+    outline: none;
+    border: 2px solid #2c0b8e;
+    background: #2c0b8e;
+  position: relative;
+  top:100px;
+  right:440px;
+}
+#submit:hover {
+  background: #fff;
+  color: #2c0b8e
+}
+
+#table{
+  position: relative;
+  top:100px;
+  left:630px;
+}
+
+.history{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  position: relative;
+  top: 150px;
+  /* top:150px;
+  left:650px; */
+}
+#emiResults{
+    position: relative;
+    top: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+
+  </style>
 </head>
+
 <body>
-    <ul>
-        <li>Item 1</li><li>Item 2</li><li>Item 3</li><li>Item 4</li><li>Item 5</li>
-    </ul>
-    <button id="nextSiblingBtn">Get Next Sibling</button>
+  <h1>EMI-Calculator</h1>
+  <form id="emiForm">
+    <p>Principal Amount : </p>
+    <input
+      type="number"
+      placeholder="Principal Amount"
+      id="principalAmount"
+    />
 
-    <script>
-        const nextSiblingButton = document.getElementById("nextSiblingBtn");
+    <p>Rate of Interest : </p>
+    <input
+      type="number"
+      step="0.01"
+      placeholder="Rate of Interest"
+      id="rateOfInterest"
+    />
+    <p>Duration (in months) : </p>
+    <input
+      type="number"
+      placeholder="Duration (in months)"
+      id="duration"
+    />
+    <button id="submit" type="button" onclick="calculateEmi()">Submit</button>
+  </form>
 
-        nextSiblingButton.addEventListener("click", function () {
-            const listItem = document.querySelector("li"); // Get the first list item
-            const nextSibling = listItem.nextSibling;
+  <div id="emiResults"></div>
 
-            if (nextSibling) {
-                alert("Next Sibling: " + nextSibling.textContent);
-            } else {
-                alert("No valid next sibling found.");
-            }
+  <script>
+    function calculateEmi() {
+      const principalAmount = parseFloat(document.getElementById('principalAmount').value);
+      const rateOfInterest = parseFloat(document.getElementById('rateOfInterest').value);
+      const duration = parseInt(document.getElementById('duration').value);
+
+      const monthlyRate = rateOfInterest / 12 / 100;
+      const emi = (principalAmount * monthlyRate * Math.pow(1 + monthlyRate, duration)) / (Math.pow(1 + monthlyRate, duration) - 1);
+
+      const emiArray = [];
+      for (let i = 1; i <= duration; i++) {
+        emiArray.push({
+          month: i,
+          amount: emi.toFixed(2),
         });
-    </script>
+      }
+
+      const calculation = {
+        principalAmount,
+        rateOfInterest,
+        duration,
+        emiArray
+      };
+
+      const calculationHistory = JSON.parse(localStorage.getItem('calculationHistory')) || [];
+      calculationHistory.push(calculation);
+      localStorage.setItem('calculationHistory', JSON.stringify(calculationHistory));
+
+      displayCalculationHistory();
+    }
+
+    function displayCalculationHistory() {
+      const calculationHistory = JSON.parse(localStorage.getItem('calculationHistory')) || [];
+      const emiResults = document.getElementById('emiResults');
+      emiResults.innerHTML = '';
+
+      if (calculationHistory.length > 0) {
+        const historyDiv = document.createElement('div');
+        historyDiv.className = 'history';
+        const h3 = document.createElement('h3');
+        h3.textContent = 'Calculation History';
+        const ul = document.createElement('ul');
+
+        calculationHistory.forEach((calculation, index) => {
+          const li = document.createElement('li');
+          const button = document.createElement('button');
+          button.textContent = `Search ${index + 1}`;
+          button.onclick = () => displayEmiArray(calculation.emiArray);
+          li.appendChild(button);
+          ul.appendChild(li);
+        });
+
+        historyDiv.appendChild(h3);
+        historyDiv.appendChild(ul);
+        emiResults.appendChild(historyDiv);
+      }
+    }
+
+    function displayEmiArray(emiArray) {
+      const emiResults = document.getElementById('emiResults');
+      emiResults.innerHTML = '';
+
+      if (emiArray.length > 0) {
+        const table = document.createElement('table');
+        table.border = '2';
+
+        const thead = document.createElement('thead');
+        const headerRow = document.createElement('tr');
+        const thMonth = document.createElement('th');
+        thMonth.textContent = 'Month';
+        const thEmi = document.createElement('th');
+        thEmi.textContent = 'EMI';
+        headerRow.appendChild(thMonth);
+        headerRow.appendChild(thEmi);
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+
+        const tbody = document.createElement('tbody');
+        emiArray.forEach(emi => {
+          const row = document.createElement('tr');
+          const tdMonth = document.createElement('td');
+          tdMonth.textContent = emi.month;
+          const tdEmi = document.createElement('td');
+          tdEmi.textContent = emi.amount;
+          row.appendChild(tdMonth);
+          row.appendChild(tdEmi);
+          tbody.appendChild(row);
+        });
+
+        table.appendChild(tbody);
+        emiResults.appendChild(table);
+      }
+    }
+
+    // Display calculation history on page load
+    displayCalculationHistory();
+  </script>
 </body>
+
 </html>

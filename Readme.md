@@ -1,4 +1,60 @@
 
+## JavaScript Engine:
+
+A JavaScript engine is a program or an integral part of a web browser that interprets and executes JavaScript code. It's responsible for parsing the JavaScript source code, optimizing it, and executing the compiled code. JavaScript engines are a crucial component for running client-side JavaScript in web browsers.
+
+**Key Responsibilities of a JavaScript Engine:**
+
+1. **Parsing:** The engine parses the JavaScript source code to create an Abstract Syntax Tree (AST) for further processing.
+
+2. **Optimization:** It performs various optimizations to improve the execution speed of the code. This may include techniques like Just-In-Time (JIT) compilation.
+
+3. **Execution:** Finally, the engine executes the optimized code and produces the desired output.
+
+**Types of JavaScript Engines:**
+
+1. **V8 (Used in Chrome and Node.js):**
+   - **Description:** V8 is an open-source JavaScript engine developed by Google for the Chrome browser and later adopted by Node.js.
+   - **Key Features:**
+     - Utilizes a fast JIT compiler for efficient code execution.
+     - Implements techniques like hidden classes and inline caching for optimization.
+
+2. **SpiderMonkey (Used in Firefox):**
+   - **Description:** SpiderMonkey is the JavaScript engine developed by the Mozilla Foundation for the Firefox browser.
+   - **Key Features:**
+     - Early implementation of a JavaScript engine in a web browser.
+     - Supports features like Just-In-Time (JIT) compilation for improved performance.
+
+3. **JavaScriptCore (Used in Safari):**
+   - **Description:** JavaScriptCore (also known as Nitro) is the JavaScript engine used in Apple's Safari browser.
+   - **Key Features:**
+     - Employs a fast interpreter and a high-performance optimizing compiler.
+     - Supports advanced JavaScript features and technologies.
+
+4. **Chakra (Used in Microsoft Edge):**
+   - **Description:** Chakra was the JavaScript engine used in Microsoft Edge before the transition to the Blink engine (Chromium).
+   - **Key Features:**
+     - Included a Just-In-Time (JIT) compiler for faster code execution.
+     - Supported various web technologies and features.
+
+5. **Rhino:**
+   - **Description:** Rhino is an open-source JavaScript engine developed by the Mozilla Foundation, mainly used for embedding JavaScript in Java applications.
+   - **Key Features:**
+     - Written in Java and allows seamless integration with Java applications.
+     - Generally used for server-side applications rather than web browsers.
+
+6. **JerryScript:**
+   - **Description:** JerryScript is an open-source JavaScript engine designed for resource-constrained devices, particularly in the Internet of Things (IoT) space.
+   - **Key Features:**
+     - Optimized for low memory usage and efficient execution on IoT devices.
+     - Provides a compact and lightweight alternative to larger JavaScript engines.
+
+These JavaScript engines play a crucial role in enabling the execution of JavaScript code on various platforms, ranging from web browsers to server-side environments and resource-constrained devices. The competition among these engines has led to continuous improvements in performance and the adoption of new language features.
+
+
+
+
+
 ## What is the DOM?
 
 The DOM is a programming interface for web documents. It provides a structured representation of a web page's elements and content, treating them as objects that can be accessed, manipulated, and modified using programming languages like JavaScript. The DOM represents the document as a tree of objects, where each object corresponds to a part of the web page.
@@ -1226,7 +1282,7 @@ In this example, when the button is clicked, an alert with the message "Button C
 In summary, `setTimeout` is for executing a function once after a delay, while `setInterval` is for executing a function repeatedly at specified intervals.
 
 
-**Event Bubbling and Capturing:**
+### Event Bubbling and Capturing:**
 Event propagation in the DOM tree happens in two phases: capturing and bubbling. These phases are essential when dealing with nested elements and event delegation.
 
 - **Capturing Phase**: The event starts from the root element and goes down the tree to the target element. It's less commonly used.
@@ -1254,6 +1310,8 @@ In this example, clicking the inner paragraph triggers both the inner and outer 
 Understanding event handling and event propagation is crucial for creating interactive web applications and handling user interactions effectively.
 
 
+## classList
+
 Certainly! Here are detailed notes for each of the `classList` properties and methods along with proper examples that include HTML and JavaScript code.
 
 **1. `add(class1, class2, ...)`**:
@@ -1275,7 +1333,10 @@ Certainly! Here are detailed notes for each of the `classList` properties and me
    </script>
    ```
 
-   In this example, clicking the "Add Class" button adds the class "new-class" to the `myElement`.
+
+
+
+In this example, clicking the "Add Class" button adds the class "new-class" to the `myElement`.
 
 **2. `contains(class)`**:
    - The `contains()` method returns `true` if the element's `classList` contains the specified class; otherwise, it returns `false.
@@ -1557,420 +1618,5 @@ Certainly! Here are detailed notes for each of the `classList` properties and me
 ``` -->
 
 
-Certainly! Let's delve into the topics of different scopes in JavaScript, scope chaining, shadowing, and closures.
 
-### 1. Different Scopes in JavaScript:
 
-**Definition:** Scope refers to the context in which variables are declared and accessed. In JavaScript, there are two main types of scope:
-
-- **Global Scope:** Variables declared outside of any function or block have a global scope. They can be accessed from any part of the code.
-
-  ```javascript
-  var globalVariable = "I am global";
-
-  function exampleFunction() {
-      console.log(globalVariable); // Accessible inside functions
-  }
-
-  console.log(globalVariable); // Accessible globally
-  ```
-
-- **Local Scope (Function Scope):** Variables declared within a function have local scope. They are only accessible within that function.
-
-  ```javascript
-  function exampleFunction() {
-      var localVariable = "I am local";
-      console.log(localVariable); // Accessible inside the function
-  }
-
-  console.log(localVariable); // Error: localVariable is not defined
-  ```
-
-### 2. Scope Chaining:
-
-**Definition:** Scope chaining refers to the ability of a function to access variables from its own scope, the scope of the function it was declared within, and the global scope.
-
-```javascript
-var globalVar = "I am global";
-
-function outerFunction() {
-    var outerVar = "I am outer";
-
-    function innerFunction() {
-        var innerVar = "I am inner";
-        console.log(innerVar);   // Access innerVar
-        console.log(outerVar);   // Access outerVar
-        console.log(globalVar);  // Access globalVar
-    }
-
-    innerFunction();
-    console.log(innerVar);   // Error: innerVar is not defined
-}
-
-outerFunction();
-console.log(outerVar);   // Error: outerVar is not defined
-```
-
-### 3. Shadowing:
-
-**Definition:** Shadowing occurs when a variable declared within a local scope has the same name as a variable in an outer scope. The inner variable "shadows" the outer one within its scope.
-
-```javascript
-var outerVar = "I am outer";
-
-function exampleFunction() {
-    var innerVar = "I am inner";
-    console.log(innerVar);   // Access innerVar
-    console.log(outerVar);   // Access outerVar from the outer scope
-
-    var outerVar = "I am inner's shadow"; // This shadows the outerVar
-    console.log(outerVar);   // Access the innerVar's shadow
-}
-
-exampleFunction();
-```
-
-Shadowing in JavaScript occurs when a variable declared within a local scope has the same name as a variable in an outer scope, effectively "shadowing" the outer variable within its scope. While shadowing can be a source of confusion and bugs if used carelessly, there are situations where it can be intentionally employed for specific purposes. Here are some use cases for shadowing:
-
-1. **Local Variable Modification:**
-   - Shadowing can be used when you want to modify the value of a variable within a specific scope without affecting the outer variable.
-
-    ```javascript
-    var count = 10;
-
-    function updateCount() {
-        var count = 20; // Shadowing the outer 'count'
-        console.log(count); // Outputs 20
-    }
-
-    updateCount();
-    console.log(count); // Outputs 10 (outer 'count' remains unchanged)
-    ```
-
-   In this case, the inner function has its own `count` variable that shadows the outer `count`, allowing modification within its scope.
-
-2. **Parameter Shadowing:**
-   - Function parameters can shadow variables with the same name in outer scopes. This is a common practice and is not considered problematic.
-
-    ```javascript
-    var x = 5;
-
-    function addX(x) {
-        return x + 10; // 'x' here shadows the outer 'x'
-    }
-
-    console.log(addX(3)); // Outputs 13 (inner 'x' is used as a parameter)
-    ```
-
-3. **Nested Function Definitions:**
-   - When functions are defined within other functions, shadowing can be used to create isolated scopes for variables. This is often seen in closures.
-
-    ```javascript
-    function outerFunction() {
-        var message = "Hello from outer";
-
-        function innerFunction() {
-            var message = "Hello from inner"; // Shadowing 'message' from outer scope
-            console.log(message); // Outputs "Hello from inner"
-        }
-
-        innerFunction();
-        console.log(message); // Outputs "Hello from outer"
-    }
-
-    outerFunction();
-    ```
-
-   In this example, the inner function has its own `message` variable, which shadows the `message` from the outer scope.
-
-4. **Avoiding Global Scope Pollution:**
-   - Shadowing can be used to avoid unintentional pollution of the global scope by reusing variable names within a function, preventing unintended interactions with global variables.
-
-    ```javascript
-    var data = "Global data";
-
-    function processData(data) {
-        // 'data' parameter shadows the global 'data'
-        console.log(data); // Outputs the function parameter
-    }
-
-    processData("Local data");
-    ```
-
-   In this case, the local `data` parameter shadows the global `data`, providing a clear separation between local and global contexts.
-
-
-
-
-
-
-
-
-### 4. Closures:
-
-**Definition:** A closure is a function that has access to variables from its own scope, the scope of the function it was declared within, and the global scope. Closures allow for the preservation of the outer function's state even after the outer function has finished executing.
-
-```javascript
-function outerFunction() {
-    var outerVar = "I am outer";
-
-    function innerFunction() {
-        var innerVar = "I am inner";
-        console.log(outerVar);   // Access outerVar from the outer scope
-        console.log(innerVar);   // Access innerVar
-    }
-
-    return innerFunction; // Return the inner function (closure)
-}
-
-var closure = outerFunction();
-closure(); // Executes innerFunction with access to outerVar and innerVar
-```
-
-In this example, `innerFunction` is returned from `outerFunction` and assigned to `closure`. Even though `outerFunction` has finished executing, `closure` still has access to `outerVar` due to the closure mechanism.
-
-Understanding these concepts is crucial for writing efficient and maintainable JavaScript code.
-
-
-Scope chaining and closures are related concepts in JavaScript, but they are not exactly the same. Let's clarify the difference between them:
-
-### Scope Chaining:
-
-- **Definition:** Scope chaining refers to the process by which a function can access variables not only within its own scope but also in the outer scopes in which it was defined.
-
-- **Mechanism:** When a function is invoked, JavaScript looks for variables in its local scope. If a variable is not found, it looks in the outer (enclosing) scope. This process continues until the variable is found or the global scope is reached.
-
-- **Example:**
-
-  ```javascript
-  var globalVar = "I am global";
-
-  function outerFunction() {
-      var outerVar = "I am outer";
-
-      function innerFunction() {
-          console.log(innerVar);   // Access innerVar
-          console.log(outerVar);   // Access outerVar from the outer scope
-          console.log(globalVar);  // Access globalVar
-      }
-
-      innerFunction();
-  }
-
-  outerFunction();
-  ```
-
-### Closures:
-
-- **Definition:** A closure is a function that "closes over" variables from its outer scope, preserving access to those variables even after the outer function has finished executing.
-
-- **Mechanism:** A closure is created when a function is defined inside another function, and the inner function references variables from the outer function. The inner function maintains a reference to the outer function's variables, creating a closure.
-
-- **Example:**
-
-  ```javascript
-  function outerFunction() {
-      var outerVar = "I am outer";
-
-      function innerFunction() {
-          console.log(outerVar);  // Access outerVar from the closure
-      }
-
-      return innerFunction; // Return the inner function (closure)
-  }
-
-  var closure = outerFunction();
-  closure(); // Executes innerFunction with access to outerVar from the closure
-  ```
-
-### Key Difference:
-
-- **Scope chaining** is the mechanism that allows a function to access variables in its lexical scope chain, while **closures** are the result of a function having access to variables from its outer scope even after the outer function has finished executing.
-
-- **Closure is a concept that involves scope chaining but is not limited to it.** A closure is formed when a function retains access to variables from its outer scope, creating a closure even if it doesn't explicitly reference variables from the outer scope in its code.
-
-In summary, scope chaining is a mechanism, while closure is a result of that mechanism, indicating that a function maintains access to its outer scope's variables. Closures often involve scope chaining, but they are not synonymous.
-
-
-**1. Class and Inheritance in JavaScript:**
-
-**Class in JavaScript:**
-
-- **Definition:** A class is a blueprint for creating objects with a predefined structure and behavior. It encapsulates data (properties) and functions (methods) that operate on that data.
-
-- **Syntax:**
-  ```javascript
-  class ClassName {
-      constructor(parameters) {
-          // constructor code
-      }
-
-      method1() {
-          // method1 code
-      }
-
-      method2() {
-          // method2 code
-      }
-  }
-  ```
-
-- **Example:**
-  ```javascript
-  class Animal {
-      constructor(name) {
-          this.name = name;
-      }
-
-      speak() {
-          console.log(`${this.name} makes a sound.`);
-      }
-  }
-
-  const dog = new Animal('Dog');
-  dog.speak(); // Output: Dog makes a sound.
-  ```
-
-**Inheritance in JavaScript:**
-
-- **Definition:** Inheritance is a mechanism that allows a class (subclass/derived class) to inherit properties and methods from another class (superclass/base class).
-
-- **Syntax:**
-  ```javascript
-  class Subclass extends Superclass {
-      constructor(parameters) {
-          super(parameters); // Call the superclass constructor
-          // subclass constructor code
-      }
-
-      // additional methods specific to the subclass
-  }
-  ```
-
-- **Example:**
-  ```javascript
-  class Bird extends Animal {
-      constructor(name, wingspan) {
-          super(name); // Call the superclass constructor
-          this.wingspan = wingspan;
-      }
-
-      fly() {
-          console.log(`${this.name} is flying with a wingspan of ${this.wingspan} cm.`);
-      }
-  }
-
-  const eagle = new Bird('Eagle', 200);
-  eagle.speak(); // Output: Eagle makes a sound.
-  eagle.fly();   // Output: Eagle is flying with a wingspan of 200 cm.
-  ```
-
-**First-Class Functions:**
-
-In programming languages, a language is said to have first-class functions if functions are treated as first-class citizens. This means functions can be:
-
-1. Assigned to variables.
-2. Passed as arguments to other functions.
-3. Returned from other functions.
-
-**Example of First-Class Functions:**
-
-```javascript
-// Function assigned to a variable
-const greet = function(name) {
-    return `Hello, ${name}!`;
-};
-
-// Function passed as an argument to another function
-function processGreeting(greeterFunction, name) {
-    return greeterFunction(name);
-}
-
-// Function returned from another function
-function createGreeter(greeting) {
-    return function(name) {
-        return `${greeting}, ${name}!`;
-    };
-}
-
-// Using first-class functions
-const result1 = processGreeting(greet, "John");
-console.log(result1); // Output: Hello, John!
-
-const customGreeter = createGreeter("Hi");
-const result2 = customGreeter("Alice");
-console.log(result2); // Output: Hi, Alice!
-```
-
-**High-Order Functions:**
-
-A higher-order function is a function that takes one or more functions as arguments or returns a function as its result.
-
-**Example of High-Order Functions:**
-
-```javascript
-// Higher-order function taking a function as an argument
-function multiplier(factor) {
-    return function(number) {
-        return number * factor;
-    };
-}
-
-const double = multiplier(2);
-const triple = multiplier(3);
-
-console.log(double(5)); // Output: 10
-console.log(triple(5)); // Output: 15
-
-// Higher-order function returning a function
-function greeterFactory(greeting) {
-    return function(name) {
-        return `${greeting}, ${name}!`;
-    };
-}
-
-const sayHello = greeterFactory("Hello");
-const sayHi = greeterFactory("Hi");
-
-console.log(sayHello("Tom")); // Output: Hello, Tom!
-console.log(sayHi("Jerry"));  // Output: Hi, Jerry!
-```
-
-**Key Differences:**
-
-1. **First-Class Functions:**
-   - Refers to the treatment of functions as first-class citizens.
-   - Allows functions to be assigned to variables, passed as arguments, and returned from other functions.
-   - It's more about the characteristics of functions in a language.
-
-2. **High-Order Functions:**
-   - Refers to functions that operate on other functions by taking them as arguments or returning them.
-   - It's more about the behavior or capability of functions to operate on functions.
-
-```javascript
-function marker(func) {
-    return function(a, b) {
-        console.log("======");
-        func(a, b);
-        console.log("======");
-    };
-}
-function sum(a, b) {
-    console.log(a + b);
-}
-const wrap = marker(sum);
-wrap(2, 3); // Now you can call wrap, which in turn calls sum with the wrapping behavior
-```
-
-```javascript
-function product(a,b){
-    console.log("======")
-    console.log(a*b);
-    console.log("======")
-}
-function diff(a,b){
-    console.log("======")
-    console.log(a-b);
-    console.log("======")
-}
-```

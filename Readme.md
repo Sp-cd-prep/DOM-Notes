@@ -95,8 +95,10 @@ The moment code gets executed, the **Global Execution Context (GEC)** gets creat
 2. **Code Execution (Execution Phase)**
 
 
-![alt text](image-2.png)
 
+<p align="center">
+  <img src="./image-2.png" />
+</p>
 
 ### Memory Allocation
 
@@ -114,11 +116,9 @@ This is the reason why we can access variables before initialization when declar
 
 The moment a **Function Execution Context (FEC)** is created, it will be pushed to the Call Stack. Once the execution of the function is over, this FEC will be removed from the call stack, and the point of execution will return to the GEC.
 
-<center>
-
-![alt text](image-1.png)
-
-<center>
+<p align="center">
+  <img src="./image-1.png" />
+</p>
 
 ## What is the DOM?
 

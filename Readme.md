@@ -78,7 +78,13 @@ There are two kinds of Execution Context in JavaScript:
 1. **Global Execution Context (GEC)**
 2. **Function Execution Context (FEC)**
 
+<center>
+
 ![alt text](image.png)
+
+<center>
+
+
 ## Execution Context Lifecycle
 
 The moment code gets executed, the **Global Execution Context (GEC)** gets created and pushed to the Call Stack. Inside the global or functional execution context, there are two phases:
@@ -106,11 +112,11 @@ This is the reason why we can access variables before initialization when declar
 
 The moment a **Function Execution Context (FEC)** is created, it will be pushed to the Call Stack. Once the execution of the function is over, this FEC will be removed from the call stack, and the point of execution will return to the GEC.
 
-
+<center>
 
 ![alt text](image-1.png)
 
-
+<center>
 
 ## What is the DOM?
 

@@ -1,4 +1,6 @@
 
+
+
 ## JavaScript Engine:
 
 A JavaScript engine is a program or an integral part of a web browser that interprets and executes JavaScript code. It's responsible for parsing the JavaScript source code, optimizing it, and executing the compiled code. JavaScript engines are a crucial component for running client-side JavaScript in web browsers.
@@ -52,6 +54,61 @@ A JavaScript engine is a program or an integral part of a web browser that inter
 These JavaScript engines play a crucial role in enabling the execution of JavaScript code on various platforms, ranging from web browsers to server-side environments and resource-constrained devices. The competition among these engines has led to continuous improvements in performance and the adoption of new language features.
 
 
+# JavaScript Execution Context
+
+The JavaScript engine uses a **Call stack** and creates a special environment to handle the execution of the JavaScript code. This environment is known as the **Execution Context**.
+
+
+
+The Execution Context contains the code that's currently running, and everything that aids in its execution. During the Execution Context run-time, the specific code gets parsed by a parser, the variables and functions are stored in memory, executable byte-code gets generated, and the code gets executed.
+
+>**Call Stack**:
+
+- A call stack is a mechanism for an interpreter (like the JavaScript interpreter in a web browser)
+to keep track of its place in a script that calls multiple functions.
+-  what function is currently being run and what functions are called from within that function, etc. or we can say that it stores global execution context and function execution context. 
+- It maintains the order of execution of execution context. Whenever a code is executed the GEC is pushed into the stack first and later on as per the function invocation the execution context is pushed into the stack. 
+- When the function code is done executiong the execution context is popped out and last the GEC also deleted.   
+
+
+## Types of Execution Context
+
+There are two kinds of Execution Context in JavaScript:
+
+1. **Global Execution Context (GEC)**
+2. **Function Execution Context (FEC)**
+
+![alt text](image.png)
+## Execution Context Lifecycle
+
+The moment code gets executed, the **Global Execution Context (GEC)** gets created and pushed to the Call Stack. Inside the global or functional execution context, there are two phases:
+
+1. **Memory Allocation (Creation Phase)**
+2. **Code Execution (Execution Phase)**
+![alt text](image-2.png)
+### Memory Allocation
+
+- **Variables declared using `var`**: Memory is allocated as `undefined` in the global scope.
+- **Variables declared using `let` or `const`**: Memory is allocated as `undefined` in block scope.
+
+This is the reason why we can access variables before initialization when declared using `var`; it will give `undefined`. However, if we try to access variables declared using `let` or `const` before their initialization, it will give a **Reference Error** because these variables will be in block scope and cannot be accessed until they are initialized. This is also known as the **temporal dead zone**.
+
+- **Functions**: Memory is allocated as their actual value defined in the code.
+
+### Code Execution
+
+- **Variables**: Will get their actual value assigned to them.
+- **Functions**: Will create a Functional Execution Context.
+
+The moment a **Function Execution Context (FEC)** is created, it will be pushed to the Call Stack. Once the execution of the function is over, this FEC will be removed from the call stack, and the point of execution will return to the GEC.
+
+
+![alt text](image-1.png)
+
+
+
+
+*******************************************
 
 
 

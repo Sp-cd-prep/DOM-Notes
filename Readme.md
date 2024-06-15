@@ -85,7 +85,11 @@ The moment code gets executed, the **Global Execution Context (GEC)** gets creat
 
 1. **Memory Allocation (Creation Phase)**
 2. **Code Execution (Execution Phase)**
+
+
 ![alt text](image-2.png)
+
+
 ### Memory Allocation
 
 - **Variables declared using `var`**: Memory is allocated as `undefined` in the global scope.
@@ -93,7 +97,7 @@ The moment code gets executed, the **Global Execution Context (GEC)** gets creat
 
 This is the reason why we can access variables before initialization when declared using `var`; it will give `undefined`. However, if we try to access variables declared using `let` or `const` before their initialization, it will give a **Reference Error** because these variables will be in block scope and cannot be accessed until they are initialized. This is also known as the **temporal dead zone**.
 
-- **Functions**: Memory is allocated as their actual value defined in the code.
+ **Functions**: Memory is allocated as their actual value defined in the code.
 
 ### Code Execution
 
@@ -103,12 +107,8 @@ This is the reason why we can access variables before initialization when declar
 The moment a **Function Execution Context (FEC)** is created, it will be pushed to the Call Stack. Once the execution of the function is over, this FEC will be removed from the call stack, and the point of execution will return to the GEC.
 
 
+
 ![alt text](image-1.png)
-
-
-
-
-*******************************************
 
 
 

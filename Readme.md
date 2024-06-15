@@ -78,11 +78,13 @@ There are two kinds of Execution Context in JavaScript:
 1. **Global Execution Context (GEC)**
 2. **Function Execution Context (FEC)**
 
-<center>
 
-![alt text](image.png)
 
-<center>
+<!-- ![alt text](image.png) -->
+
+<p align="center">
+  <img src="./image.png" />
+</p>
 
 
 ## Execution Context Lifecycle
